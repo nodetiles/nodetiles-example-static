@@ -3,10 +3,11 @@ nodetiles-example-static
 
 Example nodetiles app that serves static images
 
-yay
-====
-http://localhost:3000/static/-170/-57.0511/170/75.0511/800/500/42304/map.png
+WGS84
+http://localhost:3000/static/map.png?lonMin=-170&latMin=-57.0511&lonMax=170&latMax=75.0512&proj=4326&height=350
+Web mercator
+http://localhost:3000/static/map.png?lonMin=-170&latMin=-57.0511&lonMax=170&latMax=75.0512&proj=900913&height=550
 
-better
-=====
-http://localhost:3000/static/map.png?lonMin=-175&latMin=-40&lonMax=180&latMax=75.0511&proj=2163&width=8000&height=8000
+Weird stuff
+not ideal, but shows a bit of a ncie projection:
+http://localhost:3000/static/map.png?lonMin=-170&latMin=-57.0511&lonMax=170&latMax=75.0512&proj=2163&height=7000&width=2000
