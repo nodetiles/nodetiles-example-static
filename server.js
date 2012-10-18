@@ -66,7 +66,16 @@ app.configure('production', function(){
 // 3. Serve the map image, size `size` center at `lon,lat`
 
 app.get('/static/map.png', function img(req, res) {
-  getImg([-170, -57.0511], [170, 75.0511], 800, 500, "EPSG:900913", res);
+  var lonMin = parseFloat(req.query["lonMin"]) || -170;
+  var latMin = parseFloat(req.query["latMin"]) || -57.0511;
+  var lonMax = parseFloat(req.query["lonMax"]) || 170;
+  var latMax = parseFloat(req.query["latMax"]) || 75.0511;
+  var width = parseInt(req.query["width"], 10) || 800;
+  var height = parseInt(req.query["height"], 10) || width || 500;
+  var proj = req.query["proj"] ? "EPSG:"+req.query["proj"] : "EPSG:900913";
+
+  getImg([lonMin, latMin], [lonMax, latMax], width, height, proj, res);
+//  getImg([-170, -57.0511], [170, 75.0511], 800, 500, "EPSG:900913", res);
 });
 
 app.get('/static/:lonMin/:latMin/:lonMax/:latMax/:width/:height/:proj/map.png', function img(req, res) {
